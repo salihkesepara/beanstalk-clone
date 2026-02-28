@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import HeroSection from './components/HeroSection'
@@ -6,11 +7,13 @@ import FeaturesSection from './components/FeaturesSection'
 import FAQSection from './components/FAQSection'
 import Footer from './components/Footer'
 import SignInPage from './pages/SignInPage'
+import WaitlistModal from './components/WaitlistModal'
 
 function HomePage() {
+  const [waitlistOpen, setWaitlistOpen] = useState(false)
   return (
     <>
-      <Navbar />
+      <Navbar onOpenWaitlist={() => setWaitlistOpen(true)} />
       <main id="main-content">
         <HeroSection />
         <HowItWorksSection />
@@ -18,6 +21,7 @@ function HomePage() {
         <FAQSection />
       </main>
       <Footer />
+      <WaitlistModal isOpen={waitlistOpen} onClose={() => setWaitlistOpen(false)} />
     </>
   )
 }

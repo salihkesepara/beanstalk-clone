@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <radialGradient id="beanGrad" cx="40%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#d98c63" />
+      <stop offset="70%" stop-color="#a35732" />
+      <stop offset="100%" stop-color="#68341b" />
+    </radialGradient>
+    <radialGradient id="shadowGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(0,0,0,0.6)" />
+      <stop offset="100%" stop-color="rgba(0,0,0,0)" />
+    </radialGradient>
+  </defs>
+  <ellipse cx="50" cy="90" rx="35" ry="8" fill="url(#shadowGrad)" opacity="0.4" />
+  <path d="M50 15 C75 15, 85 40, 80 65 C75 90, 25 90, 20 65 C15 40, 25 15, 50 15" fill="url(#beanGrad)" stroke="#4a2512" stroke-width="2" />
+  <!-- Left lens -->
+  <path d="M28 42 C30 40, 42 40, 48 42 C48 48, 42 52, 32 52 C28 50, 28 42, 28 42 Z" fill="#111" />
+  <!-- Right lens -->
+  <path d="M52 42 C58 40, 70 40, 72 42 C72 42, 72 50, 68 52 C58 52, 52 48, 52 42 Z" fill="#111" />
+  <!-- Bridge -->
+  <path d="M48 42 Q50 40 52 42" fill="none" stroke="#222" stroke-width="2" />
+  <!-- Arms -->
+  <path d="M28 42 Q20 38 18 42" fill="none" stroke="#222" stroke-width="2" />
+  <path d="M72 42 Q80 38 82 42" fill="none" stroke="#222" stroke-width="2" />
+  <!-- Mouth -->
+  <path d="M45 60 Q50 65 55 60" fill="none" stroke="#4a2512" stroke-width="2" stroke-linecap="round" />
+</svg>

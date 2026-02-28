@@ -48,16 +48,6 @@ const HowItWorksSection = () => {
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 relative items-start">
-          {/* Animated SVG connecting line for desktop */}
-          <div className="hidden md:block absolute top-[28px] left-[15%] right-[15%] h-[2px] z-0">
-            <div className="absolute inset-0 bg-white/10" />
-            <motion.div
-              className="h-full bg-gradient-to-r from-transparent via-primary to-transparent w-1/3 absolute top-0"
-              animate={{ left: ['-50%', '150%'] }}
-              transition={{ duration: 2.5, repeat: Infinity, ease: 'linear' }}
-            />
-          </div>
-
           {steps.map((step, index) => (
             <motion.div
               key={step.title}

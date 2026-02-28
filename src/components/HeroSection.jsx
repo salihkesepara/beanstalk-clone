@@ -161,7 +161,7 @@ const DynamicActivityPanel = ({ isOnline }) => {
    CONNECTIONS PANEL
    ═══════════════════════════════════════════ */
 
-const ConnectionsPanel = ({ isOpen, connectedIds, onAddNode }) => {
+const ConnectionsPanel = ({ isOpen, connectedIds, onAddNode, anchorLeft = 340, anchorTop = 520 }) => {
   const [activeTab, setActiveTab] = useState('connections');
   const tabs = [
     { id: 'connections', label: 'CONNECTIONS', items: AVAILABLE_CONNECTIONS },
@@ -173,7 +173,7 @@ const ConnectionsPanel = ({ isOpen, connectedIds, onAddNode }) => {
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div className="absolute z-50" style={{ left: 340, top: 520 }}
+        <motion.div className="absolute z-50" style={{ left: anchorLeft, top: anchorTop }}
           initial={{ opacity: 0, y: -10, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: -10, scale: 0.95 }} transition={{ duration: 0.2 }}
           onClick={(e) => e.stopPropagation()}>
@@ -599,8 +599,9 @@ const HeroSection = () => {
             )}
           </AnimatePresence>
 
-          {/* Plus Button */}
-          <motion.div className="absolute" style={{ left: 380, top: 490 }}
+          {/* Plus Button — centered directly below the main node */}
+          <motion.div className="absolute"
+            style={{ left: BEANSBOT_CENTER.x + beansbotPos.x - 22, top: BEANSBOT_CENTER.y + beansbotPos.y + 90 }}
             initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.8, duration: 0.4, ease: "backOut" }}>
             <motion.div animate={isOnline ? { y: [-3, 3, -3] } : { y: 0 }} transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}>
               <div onClick={(e) => { e.stopPropagation(); isOnline && setPlusMenuOpen(p => !p); }}
@@ -611,7 +612,11 @@ const HeroSection = () => {
             </motion.div>
           </motion.div>
 
-          <ConnectionsPanel isOpen={plusMenuOpen} connectedIds={connectedIds} onAddNode={addNode} />
+          <ConnectionsPanel
+            isOpen={plusMenuOpen} connectedIds={connectedIds} onAddNode={addNode}
+            anchorLeft={BEANSBOT_CENTER.x + beansbotPos.x - 140}
+            anchorTop={BEANSBOT_CENTER.y + beansbotPos.y + 148}
+          />
           <DynamicActivityPanel isOnline={isOnline} />
 
           {/* Bottom Status Card */}
