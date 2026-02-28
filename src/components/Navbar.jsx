@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Terminal } from 'lucide-react';
 
 const Navbar = () => {
@@ -12,9 +13,9 @@ const Navbar = () => {
       </div>
 
       <div className="flex items-center gap-4">
-        <a href="#" className="text-sm font-medium text-textMuted hover:text-textMain transition-colors">
+        <Link to="/sign-in" className="text-sm font-medium text-textMuted hover:text-textMain transition-colors">
           Log in
-        </a>
+        </Link>
         <a href="#" className="text-sm font-medium text-background bg-primary hover:bg-[#3ac16f] transition-colors px-4 py-2 rounded-md">
           Join waitlist
         </a>

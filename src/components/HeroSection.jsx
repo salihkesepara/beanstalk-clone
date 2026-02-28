@@ -130,7 +130,7 @@ const DynamicActivityPanel = ({ isOnline }) => {
   return (
     <AnimatePresence>
       {isOnline && (
-        <motion.div className="absolute top-[160p[]0px] z-20"
+        <motion.div className="absolute z-20"
           style={{ right: -140, top: 50 }}
           initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 40 }} transition={{ duration: 0.5 }}>
           <div className="rounded-xl bg-zinc-900/80 border border-white/10 backdrop-blur-sm p-3.5">
@@ -356,7 +356,7 @@ const HeroSection = () => {
 
     window.addEventListener('pointermove', onMove);
     window.addEventListener('pointerup', onUp);
-  }, [positions]);
+  }, [positions, beansbotPos]);
 
   const toggleOnline = useCallback(() => {
     setIsOnline(prev => !prev);
@@ -374,8 +374,8 @@ const HeroSection = () => {
   const addNode = useCallback((item) => {
     const angle = Math.random() * Math.PI * 2;
     const dist = 160 + Math.random() * 40;
-    const nx = Math.max(20, Math.min(480, BEANSBOT_CENTER.x - HALF + Math.cos(angle) * dist));
-    const ny = Math.max(20, Math.min(560, BEANSBOT_CENTER.y - HALF + Math.sin(angle) * dist));
+    const nx = Math.max(20, Math.min(480, BEANSBOT_CENTER.x - HALF_W + Math.cos(angle) * dist));
+    const ny = Math.max(20, Math.min(560, BEANSBOT_CENTER.y - HALF_H + Math.sin(angle) * dist));
     setNodes(prev => [...prev, { id: item.id, label: item.label, x: nx, y: ny, messages: 0, lastActive: 'Just now', removable: true }]);
     setPositions(prev => ({ ...prev, [item.id]: { x: nx, y: ny } }));
     setPlusMenuOpen(false);
@@ -517,11 +517,11 @@ const HeroSection = () => {
 
           {/* Beansbot */}
           <div className="absolute z-10 touch-none select-none"
-            style={{ left: BEANSBOT_CENTER.x + beansbotPos.x - 55, top: BEANSBOT_CENTER.y + beansbotPos.y - 55, cursor: dragId === 'beansbot' ? 'grabbing' : 'grab' }}
+            style={{ left: BEANSBOT_CENTER.x + beansbotPos.x - 65, top: BEANSBOT_CENTER.y + beansbotPos.y - 75, cursor: dragId === 'beansbot' ? 'grabbing' : 'grab' }}
             onPointerDown={(e) => handlePointerDown(e, 'beansbot')}
             onMouseEnter={() => setBeansbotHovered(true)} onMouseLeave={() => setBeansbotHovered(false)}>
             <motion.div animate={isOnline && dragId !== 'beansbot' ? { y: [-4, 4, -4] } : { y: 0 }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}>
-              <div className={`relative w-[130px] h-[120px] rounded-[24px] flex flex-col items-center justify-center transition-all duration-300 ${!isOnline ? 'bg-zinc-800/80 border-2 border-white/10'
+              <div className={`relative w-[130px] h-[150px] rounded-[24px] flex flex-col items-center justify-center pb-4 transition-all duration-300 ${!isOnline ? 'bg-zinc-800/80 border-2 border-white/10'
                 : beansbotHovered || dragId === 'beansbot' ? 'bg-[#1e1e20] border-2 border-primary shadow-[0_0_50px_rgba(74,222,128,0.2)]'
                   : 'bg-[#1e1e20] border-2 border-primary/40 shadow-[0_0_40px_rgba(74,222,128,0.12)]'
                 }`}>
